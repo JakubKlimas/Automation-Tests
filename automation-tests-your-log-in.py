@@ -1,4 +1,3 @@
-
 from selenium import webdriver
 import time
 
@@ -8,11 +7,11 @@ web.get('https://testyourlog.in/example/')
 
 time.sleep(2)
 
-def test1(x, y):
+def test1(Email, Password):
     email = web.find_element_by_xpath('/html/body/div/div/form/div[1]/div[1]/div/input')
-    email.send_keys(x)
+    email.send_keys(Email)
     password = web.find_element_by_xpath('/html/body/div/div/form/div[1]/div[2]/div/input')
-    password.send_keys(y)  
+    password.send_keys(Password)  
     button = web.find_element_by_xpath('/html/body/div/div/form/div[1]/button')
     button.click()
     get_confirmation_div_text = web.find_element_by_css_selector('.content').text
@@ -21,17 +20,17 @@ def test1(x, y):
     else:
         print('Test was not completed successfully')
 
-def test2(x = None , y = None):
+def test2(Email = None , Password = None):
     
         email = web.find_element_by_xpath('/html/body/div/div/form/div[1]/div[1]/div/input')
         email.clear()
-        if(x != None):
-            email.send_keys(x)
+        if(Email != None):
+            email.send_keys(Email)
      
         password = web.find_element_by_xpath('/html/body/div/div/form/div[1]/div[2]/div/input')
         password.clear()
-        if(y != None): 
-            password.send_keys(y)
+        if(Password != None): 
+            password.send_keys(Password)
 
         button = web.find_element_by_xpath('/html/body/div/div/form/div[1]/button')
         button.click()
@@ -47,9 +46,9 @@ test1('valid@user.com', '123456')
 web.execute_script('window.history.go(-1)') 
 time.sleep(2) 
 
-test2(x = 'valid@user.com')
+test2(Email = 'valid@user.com')
 test2('12345','1234')
-test2(y = '123456')
+test2(Password = '123456')
 test2('valid@user.com','1234')
 test2('1234','123456')
 test2()
