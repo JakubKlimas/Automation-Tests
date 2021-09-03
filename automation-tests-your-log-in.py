@@ -8,11 +8,11 @@ web.get('https://testyourlog.in/example/')
 time.sleep(2)
 
 def test1(Email, Password):
-    email = web.find_element_by_xpath('/html/body/div/div/form/div[1]/div[1]/div/input')
+    email = web.find_element_by_xpath('//input[@placeholder="E-address"]')
     email.send_keys(Email)
-    password = web.find_element_by_xpath('/html/body/div/div/form/div[1]/div[2]/div/input')
+    password = web.find_element_by_xpath('//input[@placeholder="Password"]')
     password.send_keys(Password)  
-    button = web.find_element_by_xpath('/html/body/div/div/form/div[1]/button')
+    button = web.find_element_by_xpath('//button[contains(text(),"Login")]')
     button.click()
     get_confirmation_div_text = web.find_element_by_css_selector('.content').text
     if get_confirmation_div_text == "You're logged in!":
@@ -22,17 +22,17 @@ def test1(Email, Password):
 
 def test2(Email = None , Password = None):
     
-        email = web.find_element_by_xpath('/html/body/div/div/form/div[1]/div[1]/div/input')
+        email = web.find_element_by_xpath('//input[@placeholder="E-address"]')
         email.clear()
         if(Email != None):
             email.send_keys(Email)
      
-        password = web.find_element_by_xpath('/html/body/div/div/form/div[1]/div[2]/div/input')
+        password = web.find_element_by_xpath('//input[@placeholder="Password"]')
         password.clear()
         if(Password != None): 
             password.send_keys(Password)
 
-        button = web.find_element_by_xpath('/html/body/div/div/form/div[1]/button')
+        button = web.find_element_by_xpath('//button[contains(text(),"Login")]')
         button.click()
         get_confirmation_div_text = web.find_element_by_css_selector('.content').text
         if get_confirmation_div_text == "You're logged in!":
@@ -52,4 +52,3 @@ test2(Password = '123456')
 test2('valid@user.com','1234')
 test2('1234','123456')
 test2()
-
