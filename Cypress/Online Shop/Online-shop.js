@@ -50,26 +50,105 @@ context('Actions', () => {
 
     })
 
-    it('Select two dresses and add to cart', () => {
+    it('Select tree L dresses and two M dresses and add to cart', () => {
+
+    cy.get('#group_1').select('3').should('have.value','3')
 
     cy.get('[name="qty"]')
         .click()
         .clear()
-        .type(2)
-
-    cy.get('#group_1').select('2').should('have.value','2')
+        .type(3)
 
     cy.contains('Add to cart')
-        .click({ duration: 2000 })
-        .click({ duration: 2000 })
+        .click()
+        .click()
 
+    cy.wait(5000)
+
+    cy.contains('Continue shopping')
+        .click()
+
+    cy.get('#group_1').select('2').should('have.value','2')   
+
+    cy.get('[name="qty"]')
+        .click()
+        .clear()
+        .type(2) 
+        
+    cy.contains('Add to cart')
+        .click()
+    
     })
 
     it('View the product in cart', () => {
 
-    cy.contains('Proceed to checkout')
+    cy.contains('Continue shopping')
+        .click()
+
+    cy.get('[title="View my shopping cart"]').wait(5000)
+        .click()
+
+    cy.wait(5000)
+
+    cy.contains('Check out')
+        .click()
+ 
+    })
+  
+    it('Proceed to checkout', () => {
+
+    cy.get('.cart_navigation > .button > span')
         .click()
 
     })
-  
+
+    it('Add new adress and go to the "shipping" step', () => {
+
+    cy.contains('Add a new address').should('have.value', 'Add a new address')
+        .click()
+
+    cy.wait(3000)
+
+    cy.get('input[type="text"]').eq(0)
+        .click()
+        .clear()
+        .type('Jakub')
+
+    cy.get('input[type="text"]').eq(1)
+        .click()
+        .clear()
+        .type('Klimas')
+
+    cy.get('input[type="text"]').eq(3)
+        .click()
+        .clear()
+        .type('Dluga 2')
+
+    cy.get('input[type="text"]').eq(5)
+        .click()
+        .clear()
+        .type('Poznan')
+
+    cy.get('#id_state').select('46')
+
+    cy.get('input[type="text"]').eq(6)
+        .click()
+        .clear()
+        .type('57-540')
+
+    cy.get('#id_country').select('21')
+
+    cy.get('input[type="text"]').eq(7)
+        .click()
+        .clear()
+        .type('660039181')
+
+    cy.contains('Save')
+        .click()
+
+    cy.contains('Proceed to checkout')
+        .click()
+    
+    })
+
 })
