@@ -1,10 +1,5 @@
 context('Actions', () => {
-    beforeEach(() =>{
-
-    cy.viewport('iphone-x')
-
-    })
-
+    
     it('.click on phone number', () => {
        
     cy.visit('http://automationpractice.com/index.php')
@@ -26,13 +21,10 @@ context('Actions', () => {
 
     it('Select Dresses category and Casual Dresses subcategory', () => {
 
-    cy.get('.cat-title', {duration : 5000})
-        .click()
-        
-    cy.get('.menu-mobile-grover', {duration : 5000}).eq(1)
+    cy.get('[title="Dresses"]').eq(1)
         .click()
 
-    cy.get('[title="Casual Dresses"]', {duration : 5000}).eq(1)
+    cy.get('.block_content > .tree > :nth-child(1) > a')
         .click()
 
     })
@@ -63,7 +55,7 @@ context('Actions', () => {
         .click()
         .click()
 
-    cy.wait(5000)
+    cy.wait(10000)
 
     cy.contains('Continue shopping')
         .click()
@@ -77,22 +69,33 @@ context('Actions', () => {
         
     cy.contains('Add to cart')
         .click()
+        
+
+    cy.wait(10000)
+
+    cy.contains('Continue shopping')
+        .click()
     
+    })
+
+    it('Go to women category and add blouse to cart', () => {
+
+    cy.get('[title="Women"]').eq(0)
+        .click()
+
+    cy.get('[title="Blouse"]').click('Add to cart')
+
     })
 
     it('View the product in cart', () => {
 
-    cy.contains('Continue shopping')
-        .click()
-
-    cy.get('[title="View my shopping cart"]').wait(5000)
-        .click()
-
     cy.wait(5000)
-
-    cy.contains('Check out')
+    
+    cy.contains('Proceed to checkout')
         .click()
  
+    cy.wait(5000)
+
     })
   
     it('Proceed to checkout', () => {
@@ -145,10 +148,40 @@ context('Actions', () => {
 
     cy.contains('Save')
         .click()
+  
+    })
+
+    it('Write a comment and proceed to checkout', () => {
+
+    cy.get('.form-control')
+        .type('Test comment')
 
     cy.contains('Proceed to checkout')
         .click()
-    
+
     })
 
+    it('Agree to the terms and proceed', () => {
+
+    cy.get('.checkbox').check()
+
+    cy.contains('Proceed to checkout')
+        .click()
+
+    it('Select pay by bank wire', () => {
+
+    cy.get('.bankwire')
+        .click()
+
+    })
+
+    it('Confirm the order', () => {
+
+    cy.contains('I confirm my order').should('have.value','I confirm my order')
+        .click()
+
+    })
+
+    })
+    
 })
