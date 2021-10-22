@@ -1,4 +1,4 @@
-import { HEROKUAPP_SELECTORS } from "../../fixtures/herokuapp-selectors";
+import { HEROKUAPP_SELECTORS } from "../../fixtures/herokuapp_selectors";
 
 describe('Go to herokuapp', () => {
   beforeEach(() => {
@@ -11,7 +11,7 @@ it('Test Broken Images', () => {
   cy.stub(win.console, 'log').as('consoleLog')
   },
   });
-  cy.CheckAllImages
+  cy.CheckAllImages();
   });
 
 it('Checking checkboxes', () => { 
@@ -34,5 +34,10 @@ it('Checking Context Menu', () => {
   cy.on('window:alert', (text) => {
       expect(text).to.contains('You selected a context menu');
   });
+  });
+  it('Checking Disappering Elements', () => {
+    cy.get('a').contains('Disappearing Elements')
+      .click()
+    cy.DisappearingEle();
   });
   });
