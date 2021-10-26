@@ -7,5 +7,5 @@ CONTEXT_MENU: 'div[id = "hot-spot"]',
 COLUMN_A: 'div[id = "column-a"]',
 COLUMN_B: 'div[id = "column-b"]',
 DROPDOWN_LIST: 'select[id = "dropdown"]',
-TEXT_COLUMNS: '[class = "large-10 columns"]',
+TEXT_COLUMNS: 'div[class = "large-10 columns"]',
 };
