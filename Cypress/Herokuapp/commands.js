@@ -28,3 +28,21 @@ Cypress.Commands.add('DisappearingEle', () => {
         };
     });
 });
+Cypress.Commands.add('DropAtoB', () => {
+    const dataTransfer = new DataTransfer()
+    cy.get(HEROKUAPP_SELECTORS.COLUMN_A).trigger('dragstart', {
+        dataTransfer
+      });
+      cy.get(HEROKUAPP_SELECTORS.COLUMN_B).trigger('drop', {
+        dataTransfer
+      });
+});
+Cypress.Commands.add('DropBtoA', () => {
+    const dataTransfer = new DataTransfer()
+    cy.get(HEROKUAPP_SELECTORS.COLUMN_A).trigger('dragstart', {
+        dataTransfer
+      });
+      cy.get(HEROKUAPP_SELECTORS.COLUMN_B).trigger('drop',{
+        dataTransfer
+      });
+});
